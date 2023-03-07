@@ -23,10 +23,9 @@ const options = {
 const knex = require("knex")(options);
 
 knex
-  .from("cars")
-  .select(1)
-  .where("car_name", "Volvo")
-  .limit(1)
+  .select("*")
+  .from("users")
+  .rightJoin("cars", "users.id", "cars.user_id")
   .then((rows) => {
     console.log(rows);
   })
