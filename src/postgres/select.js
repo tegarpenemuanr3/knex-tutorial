@@ -23,8 +23,12 @@ const options = {
 const knex = require("knex")(options);
 
 knex
-  .from("cars")
-  .select()
+  .select("*")
+  .from("users")
+  // .join("cars", "users.id", "cars.user_id")
+  .rightJoin("cars", "users.id", "cars.user_id")
+  // .from("cars")
+  // .select()
   // .where("car_name", "Volvo")
   // .limit(1)
   .then((rows) => {
