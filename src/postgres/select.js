@@ -28,7 +28,7 @@ knex
   .where("car_name", "Volvo")
   .limit(1)
   .then((rows) => {
-    console.log(rows);
+    // console.log(rows);
   })
   .catch((err) => {
     console.log(err);
@@ -37,3 +37,12 @@ knex
   .finally(() => {
     knex.destroy();
   });
+
+const hasil = knex
+  .select("*")
+  .from("users")
+  .join("cars", "users.id", "cars.user_id")
+  .toSQL()
+  .toNative();
+
+console.log(hasil);
